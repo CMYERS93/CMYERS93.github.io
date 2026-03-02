@@ -9,8 +9,8 @@
   <style>
     :root{
       --bg: #0b0d12;
-      --panel: #111525;
-      --panel2: #0f1322;
+      --panel: rgba(17,21,37,.78);
+      --panel2: rgba(15,19,34,.72);
       --text: #e9eefc;
       --muted: #a9b4d6;
       --accent: #8fb3ff;
@@ -85,14 +85,8 @@
       overflow: hidden;
     }
 
-    .section-inner{
-      padding: 18px 18px 20px;
-    }
-
     /* Collapsible (details/summary) */
-    details{
-      border-radius: var(--radius);
-    }
+    details{ border-radius: var(--radius); }
     summary{
       list-style: none;
       cursor: pointer;
@@ -119,65 +113,99 @@
     }
     details[open] .chev{ transform: rotate(225deg); }
 
-    .author-grid{
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 10px;
-      color: var(--muted);
+    .author-box{
       padding: 16px 18px 18px;
+      color: var(--muted);
       background: rgba(17,21,37,.55);
     }
-    .author-grid p{ margin: 0; }
-    .author-meta{
-      display:flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 8px;
-    }
-    .chip{
-      display:inline-flex;
-      align-items:center;
-      gap: 8px;
-      padding: 7px 10px;
-      border: 1px solid rgba(143,179,255,.18);
-      border-radius: 999px;
-      background: rgba(15,19,34,.55);
-      color: rgba(233,238,252,.86);
-      font-size: 13px;
+    .author-box p{ margin: 0; }
+    .author-box p + p{ margin-top: 10px; }
+
+    /* Book hero section with background image */
+    .book-hero{
+      position: relative;
+      padding: 22px 18px;
+      min-height: 420px;
+      background: #0f1322;
+      overflow: hidden;
     }
 
-    /* Book sections */
-    .book{
-      padding: 18px;
-      background: linear-gradient(180deg, rgba(15,19,34,.55), rgba(17,21,37,.65));
+    .book-hero::before{
+      content:"";
+      position: absolute;
+      inset: 0;
+      background-image: var(--bgimg);
+      background-size: cover;
+      background-position: center;
+      filter: saturate(1.05) contrast(1.05);
+      transform: scale(1.03);
+      opacity: .30; /* image behind text */
     }
 
-    .book-top{
+    .book-hero::after{
+      content:"";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(900px 500px at 25% 10%, rgba(143,179,255,.25), transparent 60%),
+        radial-gradient(700px 450px at 80% 40%, rgba(124,240,199,.16), transparent 55%),
+        linear-gradient(180deg, rgba(11,13,18,.86), rgba(11,13,18,.62));
+      pointer-events: none;
+    }
+
+    .book-content{
+      position: relative;
+      z-index: 1;
+      max-width: 860px;
+      margin: 0 auto;
       display: grid;
-      grid-template-columns: 1fr;
       gap: 14px;
-      align-items: start;
     }
 
-    .book h2{
+    .book-title{
       margin: 0;
-      font-size: 20px;
-      letter-spacing: 0.2px;
+      font-size: 22px;
+      letter-spacing: .2px;
     }
 
-    .book .subtitle{
-      margin: 8px 0 0;
-      color: var(--muted);
+    .book-subtitle{
+      margin: 0;
+      color: rgba(233,238,252,.90);
+    }
+
+    .book-desc{
+      margin: 0;
+      color: rgba(233,238,252,.80);
+      max-width: 72ch;
+    }
+
+    .book-meta{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 4px;
+      color: rgba(233,238,252,.72);
+      font-size: 13.5px;
+    }
+    .pill{
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(143,179,255,.20);
+      background: rgba(15,19,34,.55);
     }
 
     .cta-row{
       display:flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-top: 14px;
+      margin-top: 10px;
     }
 
     .btn{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
       appearance: none;
       border: 1px solid rgba(143,179,255,.25);
       background: rgba(143,179,255,.12);
@@ -187,8 +215,9 @@
       font-weight: 650;
       cursor: pointer;
       transition: transform .05s ease, background .15s ease, border-color .15s ease;
+      text-decoration: none;
     }
-    .btn:hover{ background: rgba(143,179,255,.16); border-color: rgba(143,179,255,.38); }
+    .btn:hover{ background: rgba(143,179,255,.16); border-color: rgba(143,179,255,.38); text-decoration:none; }
     .btn:active{ transform: translateY(1px); }
 
     .btn.secondary{
@@ -200,25 +229,10 @@
       border-color: rgba(124,240,199,.35);
     }
 
-    .embed-wrap{
-      margin-top: 16px;
-      border: 1px solid rgba(143,179,255,.16);
-      border-radius: 14px;
-      overflow: hidden;
-      background: rgba(11,13,18,.55);
-    }
-
-    .embed-note{
-      padding: 12px 14px;
-      color: var(--muted);
-      border-bottom: 1px solid rgba(143,179,255,.10);
+    .small-note{
+      margin: 8px 0 0;
+      color: rgba(233,238,252,.62);
       font-size: 13px;
-    }
-
-    /* Gumroad embed container */
-    .gumroad-embed{
-      width: 100%;
-      min-height: 500px;
     }
 
     footer{
@@ -229,18 +243,9 @@
       text-align: center;
     }
 
-    .sr-only{
-      position:absolute; width:1px; height:1px;
-      padding:0; margin:-1px; overflow:hidden;
-      clip:rect(0,0,0,0); white-space:nowrap; border:0;
-    }
-
     @media (min-width: 860px){
-      .book-top{
-        grid-template-columns: 1.1fr .9fr;
-        gap: 22px;
-      }
-      .embed-wrap{ margin-top: 0; }
+      .book-hero{ padding: 34px 26px; min-height: 460px; }
+      .book-title{ font-size: 26px; }
     }
   </style>
 </head>
@@ -260,49 +265,56 @@
           Author presentation
           <span class="chev" aria-hidden="true"></span>
         </summary>
-        <div class="author-grid">
+        <div class="author-box">
           <p>
-            Conrad Myers writes fiction with a focus on atmosphere, tension, and character drive.
-            This page is a simple hub for current releases.
+            Conrad Myers writes fiction across two lanes: grounded adult erotic stories, and military sci-fi with a report-driven tone.
           </p>
-          <div class="author-meta" aria-label="Author tags">
-            <span class="chip">Dark mode site</span>
-            <span class="chip">One-page layout</span>
-            <span class="chip">Gumroad checkout</span>
-          </div>
+          <p>
+            This page is a simple hub for current releases, with direct links to each product page.
+          </p>
         </div>
       </details>
     </div>
 
-    <!-- 3) Full-width book section (copy/paste this block to add new books) -->
+    <!-- 3) Book sections (copy/paste one full .section to add more books) -->
     <div class="section" aria-label="Book section">
-      <section class="book">
-        <div class="book-top">
-          <div>
-            <h2>IMC XENOBIOLOGICAL RECON ARCHIVE<br><span class="highlight">Compendium of Extraterrestrial Megafauna</span></h2>
-            <p class="subtitle">
-              A military reconnaissance archive from the IMC, cataloguing dangerous and unfamiliar lifeforms from VBBS-8993.
-              Text-forward and report-styled.
-            </p>
+      <!-- Background image is set via inline CSS variable: --bgimg -->
+      <section class="book-hero" style="--bgimg: url('https://public-files.gumroad.com/8qhdm20kqesxbw4pb6envs896sd5');">
+        <div class="book-content">
+          <h2 class="book-title">
+            IMC XENOBIOLOGICAL RECON ARCHIVE<br>
+            <span class="highlight">Compendium of Extraterrestrial Megafauna</span>
+          </h2>
 
-            <div class="cta-row">
-              <a class="btn" href="https://vbbs.gumroad.com/l/mpwquy" target="_blank" rel="noopener">
-                View on Gumroad
-              </a>
-              <button class="btn secondary" type="button" id="toggleEmbedBtn">
-                Hide embed
-              </button>
-            </div>
+          <p class="book-subtitle">
+            A military reconnaissance archive from the IMC, documenting the dominant megafauna of planet VBBS-8993.
+          </p>
+
+          <p class="book-desc">
+            Written as an internal field compendium, this volume reads like a classified briefing: taxonomy notes, threat-tier
+            assessments, behavior patterns, habitat and range observations, anatomical details, and exploitation considerations.
+            It’s deliberately text-forward, built for readers who want “report style” worldbuilding and hard-edged military tone
+            rather than illustrations.
+          </p>
+
+          <div class="book-meta" aria-label="Book metadata">
+            <span class="pill">Format: text-heavy archive</span>
+            <span class="pill">Tone: military sci-fi</span>
+            <span class="pill">Focus: extraterrestrial megafauna</span>
           </div>
 
-          <div class="embed-wrap" id="embedWrap">
-            <div class="embed-note">
-              If the embed fails to load (ad blockers/privacy settings), use the “View on Gumroad” button.
-            </div>
-
-            <!-- Gumroad embed (usually shows cover image + product details) -->
-            <div class="gumroad-embed" data-gumroad-product-id="mpwquy" data-outbound-embed="true"></div>
+          <div class="cta-row">
+            <a class="btn" href="https://vbbs.gumroad.com/l/mpwquy" target="_blank" rel="noopener">
+              Buy / View on Gumroad
+            </a>
+            <a class="btn secondary" href="#top" onclick="window.scrollTo({top:0, behavior:'smooth'}); return false;">
+              Back to top
+            </a>
           </div>
+
+          <p class="small-note">
+            Tip: to add a new book, copy this entire “Book section” block and replace the background image URL, title, description, and Gumroad link.
+          </p>
         </div>
       </section>
     </div>
@@ -313,22 +325,9 @@
     </footer>
   </div>
 
-  <!-- Gumroad embed script -->
-  <script src="https://gumroad.com/js/gumroad-embed.js" async></script>
-
   <script>
     // Footer year
     document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Embed toggle
-    const btn = document.getElementById('toggleEmbedBtn');
-    const wrap = document.getElementById('embedWrap');
-
-    btn.addEventListener('click', () => {
-      const isHidden = wrap.style.display === 'none';
-      wrap.style.display = isHidden ? '' : 'none';
-      btn.textContent = isHidden ? 'Hide embed' : 'Show embed';
-    });
   </script>
 </body>
 </html>
