@@ -118,7 +118,7 @@
       color: var(--muted);
       background: rgba(17,21,37,.55);
     }
-    .author-box p{ margin: 0; }
+    .author-box p{ margin: 0; max-width: 82ch; }
     .author-box p + p{ margin-top: 10px; }
 
     /* Book hero section with background image */
@@ -137,6 +137,7 @@
       background-image: var(--bgimg);
       background-size: cover;
       background-position: center;
+      background-repeat: no-repeat; /* FIX: prevent tiling */
       filter: saturate(1.05) contrast(1.05);
       transform: scale(1.03);
       opacity: .30; /* image behind text */
@@ -232,7 +233,7 @@
     /* Placeholder style for empty book sections */
     .placeholder{
       margin: 0;
-      color: rgba(233,238,252,.62);
+      color: rgba(233,238,252,.65);
       font-size: 13.5px;
       max-width: 72ch;
     }
@@ -271,10 +272,17 @@
         </summary>
         <div class="author-box">
           <p>
-            Conrad Myers writes fiction across two lanes: grounded adult erotic stories, and military sci-fi with a report-driven tone.
+            Conrad Myers writes fiction across two lanes: grounded adult erotic stories and report-driven military sci-fi.
+            The through-line is always the same: mood, tension, and characters with clear wants, flaws, and consequences.
           </p>
           <p>
-            This page is a simple hub for current releases, with direct links to each product page.
+            In the adult work, the focus is on intimacy and psychology rather than spectacle. In the sci-fi work, the focus is
+            documentation and plausibility: field notes, taxonomy, threat grading, and the kind of “internal archive” voice that
+            makes the world feel like it exists outside the page.
+          </p>
+          <p>
+            This site stays intentionally simple. Each title below has its own panel with a short description and a direct link
+            to the official product page.
           </p>
         </div>
       </details>
@@ -282,8 +290,8 @@
 
     <!--
       BOOK SECTION TEMPLATE
-      Tip: to add a new book, copy one full .section block below and replace:
-      - background image URL (--bgimg)
+      To add a new book, copy one full .section block below and replace:
+      - background image URL (--bgimg) on the .book-hero
       - title/subtitle/description
       - Gumroad product link
     -->
@@ -326,13 +334,13 @@
       </section>
     </div>
 
-    <!-- BOOK 2 (Empty placeholder) -->
+    <!-- BOOK 2 (Placeholder) -->
     <div class="section" aria-label="Book section 2">
-      <section class="book-hero" style="--bgimg: url('');">
+      <section class="book-hero">
         <div class="book-content">
           <h2 class="book-title">Book Title Here <span class="highlight">•</span> Subtitle Here</h2>
           <p class="book-subtitle">One-line hook goes here.</p>
-          <p class="placeholder">Placeholder: add cover background image URL, description, and the Gumroad link.</p>
+          <p class="placeholder">Placeholder: add cover background image URL, a proper description, and the Gumroad link.</p>
           <div class="cta-row">
             <a class="btn" href="#" onclick="return false;">Buy / View on Gumroad</a>
           </div>
@@ -340,13 +348,13 @@
       </section>
     </div>
 
-    <!-- BOOK 3 (Empty placeholder) -->
+    <!-- BOOK 3 (Placeholder) -->
     <div class="section" aria-label="Book section 3">
-      <section class="book-hero" style="--bgimg: url('');">
+      <section class="book-hero">
         <div class="book-content">
           <h2 class="book-title">Book Title Here <span class="highlight">•</span> Subtitle Here</h2>
           <p class="book-subtitle">One-line hook goes here.</p>
-          <p class="placeholder">Placeholder: add cover background image URL, description, and the Gumroad link.</p>
+          <p class="placeholder">Placeholder: add cover background image URL, a proper description, and the Gumroad link.</p>
           <div class="cta-row">
             <a class="btn" href="#" onclick="return false;">Buy / View on Gumroad</a>
           </div>
@@ -354,69 +362,13 @@
       </section>
     </div>
 
-    <!-- BOOK 4 (Empty placeholder) -->
+    <!-- BOOK 4 (Placeholder) -->
     <div class="section" aria-label="Book section 4">
-      <section class="book-hero" style="--bgimg: url('');">
+      <section class="book-hero">
         <div class="book-content">
           <h2 class="book-title">Book Title Here <span class="highlight">•</span> Subtitle Here</h2>
           <p class="book-subtitle">One-line hook goes here.</p>
-          <p class="placeholder">Placeholder: add cover background image URL, description, and the Gumroad link.</p>
-          <div class="cta-row">
-            <a class="btn" href="#" onclick="return false;">Buy / View on Gumroad</a>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <!-- BOOK 5 (Empty placeholder) -->
-    <div class="section" aria-label="Book section 5">
-      <section class="book-hero" style="--bgimg: url('');">
-        <div class="book-content">
-          <h2 class="book-title">Book Title Here <span class="highlight">•</span> Subtitle Here</h2>
-          <p class="book-subtitle">One-line hook goes here.</p>
-          <p class="placeholder">Placeholder: add cover background image URL, description, and the Gumroad link.</p>
-          <div class="cta-row">
-            <a class="btn" href="#" onclick="return false;">Buy / View on Gumroad</a>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <!-- BOOK 6 (Empty placeholder) -->
-    <div class="section" aria-label="Book section 6">
-      <section class="book-hero" style="--bgimg: url('');">
-        <div class="book-content">
-          <h2 class="book-title">Book Title Here <span class="highlight">•</span> Subtitle Here</h2>
-          <p class="book-subtitle">One-line hook goes here.</p>
-          <p class="placeholder">Placeholder: add cover background image URL, description, and the Gumroad link.</p>
-          <div class="cta-row">
-            <a class="btn" href="#" onclick="return false;">Buy / View on Gumroad</a>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <!-- BOOK 7 (Empty placeholder) -->
-    <div class="section" aria-label="Book section 7">
-      <section class="book-hero" style="--bgimg: url('');">
-        <div class="book-content">
-          <h2 class="book-title">Book Title Here <span class="highlight">•</span> Subtitle Here</h2>
-          <p class="book-subtitle">One-line hook goes here.</p>
-          <p class="placeholder">Placeholder: add cover background image URL, description, and the Gumroad link.</p>
-          <div class="cta-row">
-            <a class="btn" href="#" onclick="return false;">Buy / View on Gumroad</a>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <!-- BOOK 8 (Empty placeholder) -->
-    <div class="section" aria-label="Book section 8">
-      <section class="book-hero" style="--bgimg: url('');">
-        <div class="book-content">
-          <h2 class="book-title">Book Title Here <span class="highlight">•</span> Subtitle Here</h2>
-          <p class="book-subtitle">One-line hook goes here.</p>
-          <p class="placeholder">Placeholder: add cover background image URL, description, and the Gumroad link.</p>
+          <p class="placeholder">Placeholder: add cover background image URL, a proper description, and the Gumroad link.</p>
           <div class="cta-row">
             <a class="btn" href="#" onclick="return false;">Buy / View on Gumroad</a>
           </div>
