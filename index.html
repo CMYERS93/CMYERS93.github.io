@@ -229,10 +229,12 @@
       border-color: rgba(124,240,199,.35);
     }
 
-    .small-note{
-      margin: 8px 0 0;
+    /* Placeholder style for empty book sections */
+    .placeholder{
+      margin: 0;
       color: rgba(233,238,252,.62);
-      font-size: 13px;
+      font-size: 13.5px;
+      max-width: 72ch;
     }
 
     footer{
@@ -251,6 +253,8 @@
 </head>
 
 <body>
+  <a id="top" class="sr-only" href="#top">Top</a>
+
   <div class="wrap">
     <!-- 1) Header -->
     <header>
@@ -276,9 +280,16 @@
       </details>
     </div>
 
-    <!-- 3) Book sections (copy/paste one full .section to add more books) -->
-    <div class="section" aria-label="Book section">
-      <!-- Background image is set via inline CSS variable: --bgimg -->
+    <!--
+      BOOK SECTION TEMPLATE
+      Tip: to add a new book, copy one full .section block below and replace:
+      - background image URL (--bgimg)
+      - title/subtitle/description
+      - Gumroad product link
+    -->
+
+    <!-- BOOK 1 (Filled) -->
+    <div class="section" aria-label="Book section 1">
       <section class="book-hero" style="--bgimg: url('https://public-files.gumroad.com/8qhdm20kqesxbw4pb6envs896sd5');">
         <div class="book-content">
           <h2 class="book-title">
@@ -311,10 +322,104 @@
               Back to top
             </a>
           </div>
+        </div>
+      </section>
+    </div>
 
-          <p class="small-note">
-            Tip: to add a new book, copy this entire “Book section” block and replace the background image URL, title, description, and Gumroad link.
-          </p>
+    <!-- BOOK 2 (Empty placeholder) -->
+    <div class="section" aria-label="Book section 2">
+      <section class="book-hero" style="--bgimg: url('');">
+        <div class="book-content">
+          <h2 class="book-title">Book Title Here <span class="highlight">•</span> Subtitle Here</h2>
+          <p class="book-subtitle">One-line hook goes here.</p>
+          <p class="placeholder">Placeholder: add cover background image URL, description, and the Gumroad link.</p>
+          <div class="cta-row">
+            <a class="btn" href="#" onclick="return false;">Buy / View on Gumroad</a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- BOOK 3 (Empty placeholder) -->
+    <div class="section" aria-label="Book section 3">
+      <section class="book-hero" style="--bgimg: url('');">
+        <div class="book-content">
+          <h2 class="book-title">Book Title Here <span class="highlight">•</span> Subtitle Here</h2>
+          <p class="book-subtitle">One-line hook goes here.</p>
+          <p class="placeholder">Placeholder: add cover background image URL, description, and the Gumroad link.</p>
+          <div class="cta-row">
+            <a class="btn" href="#" onclick="return false;">Buy / View on Gumroad</a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- BOOK 4 (Empty placeholder) -->
+    <div class="section" aria-label="Book section 4">
+      <section class="book-hero" style="--bgimg: url('');">
+        <div class="book-content">
+          <h2 class="book-title">Book Title Here <span class="highlight">•</span> Subtitle Here</h2>
+          <p class="book-subtitle">One-line hook goes here.</p>
+          <p class="placeholder">Placeholder: add cover background image URL, description, and the Gumroad link.</p>
+          <div class="cta-row">
+            <a class="btn" href="#" onclick="return false;">Buy / View on Gumroad</a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- BOOK 5 (Empty placeholder) -->
+    <div class="section" aria-label="Book section 5">
+      <section class="book-hero" style="--bgimg: url('');">
+        <div class="book-content">
+          <h2 class="book-title">Book Title Here <span class="highlight">•</span> Subtitle Here</h2>
+          <p class="book-subtitle">One-line hook goes here.</p>
+          <p class="placeholder">Placeholder: add cover background image URL, description, and the Gumroad link.</p>
+          <div class="cta-row">
+            <a class="btn" href="#" onclick="return false;">Buy / View on Gumroad</a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- BOOK 6 (Empty placeholder) -->
+    <div class="section" aria-label="Book section 6">
+      <section class="book-hero" style="--bgimg: url('');">
+        <div class="book-content">
+          <h2 class="book-title">Book Title Here <span class="highlight">•</span> Subtitle Here</h2>
+          <p class="book-subtitle">One-line hook goes here.</p>
+          <p class="placeholder">Placeholder: add cover background image URL, description, and the Gumroad link.</p>
+          <div class="cta-row">
+            <a class="btn" href="#" onclick="return false;">Buy / View on Gumroad</a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- BOOK 7 (Empty placeholder) -->
+    <div class="section" aria-label="Book section 7">
+      <section class="book-hero" style="--bgimg: url('');">
+        <div class="book-content">
+          <h2 class="book-title">Book Title Here <span class="highlight">•</span> Subtitle Here</h2>
+          <p class="book-subtitle">One-line hook goes here.</p>
+          <p class="placeholder">Placeholder: add cover background image URL, description, and the Gumroad link.</p>
+          <div class="cta-row">
+            <a class="btn" href="#" onclick="return false;">Buy / View on Gumroad</a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- BOOK 8 (Empty placeholder) -->
+    <div class="section" aria-label="Book section 8">
+      <section class="book-hero" style="--bgimg: url('');">
+        <div class="book-content">
+          <h2 class="book-title">Book Title Here <span class="highlight">•</span> Subtitle Here</h2>
+          <p class="book-subtitle">One-line hook goes here.</p>
+          <p class="placeholder">Placeholder: add cover background image URL, description, and the Gumroad link.</p>
+          <div class="cta-row">
+            <a class="btn" href="#" onclick="return false;">Buy / View on Gumroad</a>
+          </div>
         </div>
       </section>
     </div>
