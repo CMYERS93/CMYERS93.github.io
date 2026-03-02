@@ -8,7 +8,7 @@
 
   <style>
     :root{
-      --bg: #0b0d12;
+      --bg: #0f1114;                 /* solid very dark gray */
       --panel: rgba(17,21,37,.78);
       --panel2: rgba(15,19,34,.72);
       --text: #e9eefc;
@@ -26,10 +26,7 @@
     body{
       margin: 0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      background:
-        radial-gradient(900px 500px at 20% 0%, rgba(143,179,255,.14), transparent 60%),
-        radial-gradient(700px 450px at 90% 20%, rgba(124,240,199,.10), transparent 55%),
-        var(--bg);
+      background: var(--bg);         /* FIX: solid background only */
       color: var(--text);
       line-height: 1.45;
     }
@@ -44,9 +41,10 @@
       border-radius: var(--radius);
       background: linear-gradient(180deg, rgba(17,21,37,.9), rgba(15,19,34,.75));
       box-shadow: var(--shadow);
-      padding: 26px 22px;
+      padding: 26px 22px 20px;
       position: relative;
       overflow: hidden;
+      text-align: center;            /* FIX: center align title + tagline */
     }
 
     header::after{
@@ -54,9 +52,10 @@
       position:absolute;
       inset:-120px -120px auto auto;
       width: 240px; height: 240px;
-      background: radial-gradient(circle at 30% 30%, rgba(143,179,255,.30), transparent 60%);
+      background: radial-gradient(circle at 30% 30%, rgba(143,179,255,.26), transparent 60%);
       transform: rotate(12deg);
       pointer-events:none;
+      opacity: .9;
     }
 
     .site-title{
@@ -74,6 +73,34 @@
     .highlight{
       color: var(--accent2);
       font-weight: 600;
+    }
+
+    /* "Sponsor logo" icon row */
+    .icon-row{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(143,179,255,.10);
+      position: relative;
+      z-index: 1;
+    }
+
+    .icon-badge{
+      width: 58px;
+      height: 42px;
+      border-radius: 12px;
+      border: 1px solid rgba(143,179,255,.16);
+      background: rgba(15,19,34,.55);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;               /* sized like a small logo */
+      line-height: 1;
+      box-shadow: 0 10px 18px rgba(0,0,0,.25);
+      user-select: none;
     }
 
     .section{
@@ -121,42 +148,14 @@
     .author-box p{ margin: 0; max-width: 82ch; }
     .author-box p + p{ margin-top: 10px; }
 
-    /* Book hero section with background image */
+    /* Book section (no cover background, per request) */
     .book-hero{
       position: relative;
       padding: 22px 18px;
-      min-height: 420px;
-      background: #0f1322;
-      overflow: hidden;
-    }
-
-    .book-hero::before{
-      content:"";
-      position: absolute;
-      inset: 0;
-      background-image: var(--bgimg);
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat; /* FIX: prevent tiling */
-      filter: saturate(1.05) contrast(1.05);
-      transform: scale(1.03);
-      opacity: .30; /* image behind text */
-    }
-
-    .book-hero::after{
-      content:"";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(900px 500px at 25% 10%, rgba(143,179,255,.25), transparent 60%),
-        radial-gradient(700px 450px at 80% 40%, rgba(124,240,199,.16), transparent 55%),
-        linear-gradient(180deg, rgba(11,13,18,.86), rgba(11,13,18,.62));
-      pointer-events: none;
+      background: rgba(15,19,34,.55);
     }
 
     .book-content{
-      position: relative;
-      z-index: 1;
       max-width: 860px;
       margin: 0 auto;
       display: grid;
@@ -221,16 +220,6 @@
     .btn:hover{ background: rgba(143,179,255,.16); border-color: rgba(143,179,255,.38); text-decoration:none; }
     .btn:active{ transform: translateY(1px); }
 
-    .btn.secondary{
-      background: rgba(124,240,199,.10);
-      border-color: rgba(124,240,199,.22);
-    }
-    .btn.secondary:hover{
-      background: rgba(124,240,199,.14);
-      border-color: rgba(124,240,199,.35);
-    }
-
-    /* Placeholder style for empty book sections */
     .placeholder{
       margin: 0;
       color: rgba(233,238,252,.65);
@@ -247,23 +236,33 @@
     }
 
     @media (min-width: 860px){
-      .book-hero{ padding: 34px 26px; min-height: 460px; }
+      .book-hero{ padding: 34px 26px; }
       .book-title{ font-size: 26px; }
+      .icon-badge{ width: 64px; height: 46px; font-size: 24px; }
     }
   </style>
 </head>
 
 <body>
-  <a id="top" class="sr-only" href="#top">Top</a>
-
   <div class="wrap">
-    <!-- 1) Header -->
+    <!-- Header -->
     <header>
       <h1 class="site-title">Conrad Myers <span class="highlight">•</span> Author</h1>
       <p class="tagline">“I write the things I want to read - as simple as that.”</p>
+
+      <!-- Icon row (logo-like) -->
+      <div class="icon-row" aria-label="Themes">
+        <!-- Sci-fi / military / creatures / archive / adult -->
+        <span class="icon-badge" title="Science Fiction" aria-label="Science Fiction">🚀</span>
+        <span class="icon-badge" title="Military" aria-label="Military">🪖</span>
+        <span class="icon-badge" title="Creatures" aria-label="Creatures">🦖</span>
+        <span class="icon-badge" title="Mystery / Tension" aria-label="Mystery / Tension">🕯️</span>
+        <span class="icon-badge" title="Documents / Archives" aria-label="Documents / Archives">📁</span>
+        <span class="icon-badge" title="Adult Erotic Fiction" aria-label="Adult Erotic Fiction">🔞</span>
+      </div>
     </header>
 
-    <!-- 2) Collapsible author presentation -->
+    <!-- Author section -->
     <div class="section" aria-label="Author section">
       <details>
         <summary>
@@ -273,16 +272,20 @@
         <div class="author-box">
           <p>
             Conrad Myers writes fiction across two lanes: grounded adult erotic stories and report-driven military sci-fi.
-            The through-line is always the same: mood, tension, and characters with clear wants, flaws, and consequences.
+            The common thread is a straightforward style that prioritizes atmosphere, tension, and characters with clear wants.
           </p>
           <p>
-            In the adult work, the focus is on intimacy and psychology rather than spectacle. In the sci-fi work, the focus is
-            documentation and plausibility: field notes, taxonomy, threat grading, and the kind of “internal archive” voice that
-            makes the world feel like it exists outside the page.
+            The erotic work leans into intimacy and psychology: people, impulses, and the situations that push them into choices
+            they didn’t plan to make. It’s adult fiction, written for adults, without trying to pretend it’s anything else.
           </p>
           <p>
-            This site stays intentionally simple. Each title below has its own panel with a short description and a direct link
-            to the official product page.
+            The sci-fi work is structured like internal documentation: briefings, field notes, threat grading, and pragmatic
+            observations. It aims to feel like a real archive you weren’t meant to see, where the details matter and the voice
+            is controlled, practical, and a little cold.
+          </p>
+          <p>
+            This site is intentionally minimal. Each book gets a full-width panel with a short description and a direct link to
+            its Gumroad product page.
           </p>
         </div>
       </details>
@@ -291,14 +294,13 @@
     <!--
       BOOK SECTION TEMPLATE
       To add a new book, copy one full .section block below and replace:
-      - background image URL (--bgimg) on the .book-hero
       - title/subtitle/description
       - Gumroad product link
     -->
 
     <!-- BOOK 1 (Filled) -->
     <div class="section" aria-label="Book section 1">
-      <section class="book-hero" style="--bgimg: url('https://public-files.gumroad.com/8qhdm20kqesxbw4pb6envs896sd5');">
+      <section class="book-hero">
         <div class="book-content">
           <h2 class="book-title">
             IMC XENOBIOLOGICAL RECON ARCHIVE<br>
@@ -326,9 +328,6 @@
             <a class="btn" href="https://vbbs.gumroad.com/l/mpwquy" target="_blank" rel="noopener">
               Buy / View on Gumroad
             </a>
-            <a class="btn secondary" href="#top" onclick="window.scrollTo({top:0, behavior:'smooth'}); return false;">
-              Back to top
-            </a>
           </div>
         </div>
       </section>
@@ -340,7 +339,7 @@
         <div class="book-content">
           <h2 class="book-title">Book Title Here <span class="highlight">•</span> Subtitle Here</h2>
           <p class="book-subtitle">One-line hook goes here.</p>
-          <p class="placeholder">Placeholder: add cover background image URL, a proper description, and the Gumroad link.</p>
+          <p class="placeholder">Placeholder: add a proper description and the Gumroad link.</p>
           <div class="cta-row">
             <a class="btn" href="#" onclick="return false;">Buy / View on Gumroad</a>
           </div>
@@ -354,7 +353,7 @@
         <div class="book-content">
           <h2 class="book-title">Book Title Here <span class="highlight">•</span> Subtitle Here</h2>
           <p class="book-subtitle">One-line hook goes here.</p>
-          <p class="placeholder">Placeholder: add cover background image URL, a proper description, and the Gumroad link.</p>
+          <p class="placeholder">Placeholder: add a proper description and the Gumroad link.</p>
           <div class="cta-row">
             <a class="btn" href="#" onclick="return false;">Buy / View on Gumroad</a>
           </div>
@@ -368,7 +367,7 @@
         <div class="book-content">
           <h2 class="book-title">Book Title Here <span class="highlight">•</span> Subtitle Here</h2>
           <p class="book-subtitle">One-line hook goes here.</p>
-          <p class="placeholder">Placeholder: add cover background image URL, a proper description, and the Gumroad link.</p>
+          <p class="placeholder">Placeholder: add a proper description and the Gumroad link.</p>
           <div class="cta-row">
             <a class="btn" href="#" onclick="return false;">Buy / View on Gumroad</a>
           </div>
@@ -376,14 +375,13 @@
       </section>
     </div>
 
-    <!-- 4) Footer -->
+    <!-- Footer -->
     <footer>
       <div>© <span id="year"></span> Conrad Myers. All rights reserved.</div>
     </footer>
   </div>
 
   <script>
-    // Footer year
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
