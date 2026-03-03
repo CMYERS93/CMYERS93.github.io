@@ -8,7 +8,7 @@
 
   <style>
     :root{
-      --bg: #0f1114;                 /* solid very dark gray page background */
+      --bg: #0f1114;
       --text: #e9eefc;
       --muted: #a9b4d6;
       --accent: #8fb3ff;
@@ -78,7 +78,7 @@
       font-weight: 600;
     }
 
-    /* "Sponsor logo" icon row (emoji badges) */
+    /* Emoji badges */
     .icon-row{
       display: flex;
       flex-wrap: wrap;
@@ -105,12 +105,9 @@
       box-shadow: 0 10px 18px rgba(0,0,0,.25);
       user-select: none;
       cursor: default;
-    }
-
-    /* tooltip */
-    .icon-badge{
       position: relative;
     }
+
     .icon-badge[data-tip]:hover::after,
     .icon-badge[data-tip]:focus-visible::after{
       content: attr(data-tip);
@@ -235,7 +232,7 @@
       overflow: hidden;
     }
 
-    /* Collapsible (details/summary) */
+    /* Collapsible author */
     details{ border-radius: var(--radius); }
     summary{
       list-style: none;
@@ -271,7 +268,20 @@
     .author-box p{ margin: 0; max-width: 82ch; }
     .author-box p + p{ margin-top: 10px; }
 
-    /* Book hero section with background image behind text */
+    /* Trust notice */
+    .notice{
+      margin-top: 10px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(143,179,255,.16);
+      background: rgba(15,19,34,.55);
+      color: rgba(233,238,252,.72);
+      font-size: 13.25px;
+      max-width: 90ch;
+    }
+    .notice strong{ color: rgba(233,238,252,.92); }
+
+    /* Book hero with background image behind text */
     .book-hero{
       position: relative;
       padding: 22px 18px;
@@ -289,7 +299,7 @@
       background-position: center;
       background-repeat: no-repeat;
       transform: scale(1.03);
-      opacity: .28; /* keep subtle */
+      opacity: .28;
       filter: saturate(1.05) contrast(1.05);
     }
 
@@ -333,6 +343,20 @@
       font-size: 13px;
       font-weight: 800;
       letter-spacing: .2px;
+    }
+
+    .status{
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(143,179,255,.24);
+      background: rgba(143,179,255,.10);
+      color: rgba(233,238,252,.86);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .15px;
     }
 
     .genre-tag{
@@ -387,32 +411,15 @@
       margin-top: 10px;
     }
 
-    /* Featured section subtle stronger border */
     .section.featured-wrap{
       border-color: rgba(124,240,199,.32);
       box-shadow: 0 10px 28px rgba(0,0,0,.42);
     }
 
-    /* Placeholder style for empty book sections */
-    .placeholder{
-      margin: 0;
-      color: rgba(233,238,252,.65);
-      font-size: 13.5px;
-      max-width: 72ch;
+    /* Under production panel look */
+    .section.wip-wrap{
+      border-color: rgba(143,179,255,.28);
     }
-
-    /* Notices (trust signals) */
-    .notice{
-      margin-top: 10px;
-      padding: 12px 14px;
-      border-radius: 14px;
-      border: 1px solid rgba(143,179,255,.16);
-      background: rgba(15,19,34,.55);
-      color: rgba(233,238,252,.72);
-      font-size: 13.25px;
-      max-width: 90ch;
-    }
-    .notice strong{ color: rgba(233,238,252,.92); }
 
     footer{
       margin-top: 18px;
@@ -437,7 +444,6 @@
       <h1 class="site-title">Conrad Myers <span class="highlight">•</span> Author</h1>
       <p class="tagline">“I write the things I want to read - as simple as that.”</p>
 
-      <!-- Icon row (logo-like) -->
       <div class="icon-row" aria-label="Themes">
         <span class="icon-badge" tabindex="0" data-tip="Science fiction" aria-label="Science fiction">🚀</span>
         <span class="icon-badge" tabindex="0" data-tip="Military tone" aria-label="Military tone">🪖</span>
@@ -447,7 +453,7 @@
       </div>
     </header>
 
-    <!-- Sticky filters: choose either category or both -->
+    <!-- Sticky filters -->
     <div class="sticky-bar" aria-label="Filters">
       <div class="sticky-inner">
         <div class="filters">
@@ -499,7 +505,7 @@
           </p>
           <p>
             This site is intentionally minimal. Each title has its own panel with a short description and a direct link to its
-            Gumroad product page. New releases will appear at the top.
+            product page. New releases will appear at the top.
           </p>
 
           <div class="notice">
@@ -512,18 +518,8 @@
 
     <div id="books"></div>
 
-    <!--
-      BOOK SECTION TEMPLATE
-      To add a new book, copy one full .section block below and replace:
-      - background image URL (--bgimg) on the .book-hero
-      - title/subtitle/description
-      - Gumroad product link
-      - data-genre (scifi or adult)
-      - optional: add class "featured-wrap" for the current main book
-    -->
-
     <!-- BOOK 1 (Featured | Military Sci-Fi) -->
-    <div class="section featured-wrap book-section" data-genre="scifi" aria-label="Book section 1">
+    <div class="section featured-wrap book-section" data-genre="scifi" aria-label="Featured book">
       <section class="book-hero" style="--bgimg: url('https://public-files.gumroad.com/8qhdm20kqesxbw4pb6envs896sd5');">
         <div class="book-content">
           <div class="badge-row">
@@ -562,58 +558,41 @@
       </section>
     </div>
 
-    <!-- BOOK 2 (Placeholder | set genre as needed) -->
-    <div class="section book-section" data-genre="adult" aria-label="Book section 2">
+    <!-- BOOK 2 (Under production | Adult Erotic) -->
+    <div class="section wip-wrap book-section" data-genre="adult" aria-label="Under production book">
       <section class="book-hero" style="--bgimg: url('');">
         <div class="book-content">
           <div class="badge-row">
+            <span class="status">🛠 Under production</span>
             <span class="genre-tag">Adult Erotic</span>
           </div>
 
-          <h2 class="book-title">Book Title Here <span class="highlight">•</span> Subtitle Here</h2>
-          <p class="book-subtitle">One-line hook goes here.</p>
-          <p class="placeholder">Placeholder: add background image URL, description, and the Gumroad link.</p>
+          <h2 class="book-title">
+            Manly Encounters<br>
+            <span class="highlight">The Lonely Taxi Driver</span>
+          </h2>
+
+          <p class="book-subtitle">
+            A tense, grounded adult story about a man who can’t stop feeling the emptiness after the engine turns off.
+          </p>
+
+          <p class="book-desc">
+            Alex is 36, works long shifts, and drives home to silence. He’s straight, touch-starved, and tired of pretending he
+            isn’t. Between late-night pickups, awkward conversations, and choices made in moments of weakness, he starts looking
+            for relief in places that don’t match the life he thought he’d have. It’s a story about loneliness first and desire
+            second, told with a close, blunt voice.
+          </p>
+
+          <div class="book-meta" aria-label="Book metadata">
+            <span class="pill">Series: Manly Encounters</span>
+            <span class="pill">Tone: grounded / intimate</span>
+            <span class="pill">Status: in production</span>
+          </div>
 
           <div class="cta-row">
-            <a class="btn" href="#" onclick="return false;">Buy / View on Gumroad</a>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <!-- BOOK 3 (Placeholder) -->
-    <div class="section book-section" data-genre="scifi" aria-label="Book section 3">
-      <section class="book-hero" style="--bgimg: url('');">
-        <div class="book-content">
-          <div class="badge-row">
-            <span class="genre-tag">Military Sci-Fi</span>
-          </div>
-
-          <h2 class="book-title">Book Title Here <span class="highlight">•</span> Subtitle Here</h2>
-          <p class="book-subtitle">One-line hook goes here.</p>
-          <p class="placeholder">Placeholder: add background image URL, description, and the Gumroad link.</p>
-
-          <div class="cta-row">
-            <a class="btn" href="#" onclick="return false;">Buy / View on Gumroad</a>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <!-- BOOK 4 (Placeholder) -->
-    <div class="section book-section" data-genre="adult" aria-label="Book section 4">
-      <section class="book-hero" style="--bgimg: url('');">
-        <div class="book-content">
-          <div class="badge-row">
-            <span class="genre-tag">Adult Erotic</span>
-          </div>
-
-          <h2 class="book-title">Book Title Here <span class="highlight">•</span> Subtitle Here</h2>
-          <p class="book-subtitle">One-line hook goes here.</p>
-          <p class="placeholder">Placeholder: add background image URL, description, and the Gumroad link.</p>
-
-          <div class="cta-row">
-            <a class="btn" href="#" onclick="return false;">Buy / View on Gumroad</a>
+            <button class="btn secondary" type="button" disabled title="Link will be added when available">
+              Coming soon on Gumroad
+            </button>
           </div>
         </div>
       </section>
@@ -626,7 +605,6 @@
   </div>
 
   <script>
-    // Footer year
     document.getElementById('year').textContent = new Date().getFullYear();
 
     const sciFiCb = document.getElementById('filterSciFi');
@@ -646,9 +624,6 @@
 
         sec.style.display = shouldShow ? '' : 'none';
       });
-
-      // If user turns both off, show nothing (as requested: either, or both).
-      // If you want "both off = show all", change logic here.
     }
 
     sciFiCb.addEventListener('change', applyFilters);
@@ -660,7 +635,6 @@
       applyFilters();
     });
 
-    // Initial run
     applyFilters();
   </script>
 </body>
